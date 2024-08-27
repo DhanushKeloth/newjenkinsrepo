@@ -2,8 +2,8 @@ pipeline {
     agent any  // Run the pipeline on any available agent
 
     environment {
-        // Define the Node.js version to use
-        NODE_VERSION = '20.12.2'
+        // Use the name configured in Global Tool Configuration
+        NODE_VERSION = 'NodeJS 20.12.2'
     }
 
     stages {
@@ -18,7 +18,7 @@ pipeline {
             steps {
                 script {
                     // Use Node.js version defined in the environment
-                    def nodeHome = tool name: "NodeJS ${NODE_VERSION}", type: 'NodeJSInstallation'
+                    def nodeHome = tool name: NODE_VERSION, type: 'NodeJSInstallation'
                     env.PATH = "${nodeHome}/bin:${env.PATH}"
                 }
                 // Verify Node.js and npm versions
