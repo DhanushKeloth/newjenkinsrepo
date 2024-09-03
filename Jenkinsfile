@@ -1,65 +1,34 @@
 pipeline {
-    agent any  // Run the pipeline on any available agent
-
-
-
+    agent any
     stages {
         stage('Checkout') {
             steps {
-                // Checkout code from the SCM
-                checkout scm
+                git 'https://github.com/YOUR_USERNAME/my-node-app.git'
             }
         }
-
-        stage('Setup Node.js Environment') {
-            steps {
-            
-                   echo "building app"
-            }
-        }
-
         stage('Install Dependencies') {
             steps {
-                echo "install dep"
+                script {
+                    def nodeHome = tool name: 'NodeJS', type: 'NodeJSInstallation'
+                    env.PATH = "${nodeHome}/bin:${env.PATH}"
+                    sh 'npm install'
+                }
             }
         }
-
         stage('Run Tests') {
             steps {
-                // Run tests
-                echo "run tests"
+                // Add test commands if you have tests
             }
         }
-
         stage('Build') {
             steps {
-                // Build the project
-              echo "building"
+                // Add build commands if necessary
             }
         }
-
         stage('Deploy') {
             steps {
-                // Example deployment step
-                echo 'Deploying application...'
-                // Add deployment commands here
+                echo 'Deploy stage (not implemented)'
             }
-        }
-    }
-
-    post {
-        always {
-            // Clean up or notify regardless of the build outcome
-            echo 'Cleaning up...'
-            // Add cleanup steps here if needed
-        }
-        success {
-            // Notify on successful build
-            echo 'Build successful!'
-        }
-        failure {
-            // Notify on failed build
-            echo 'Build failed!'
         }
     }
 }
