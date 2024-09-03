@@ -13,7 +13,7 @@ pipeline {
 
         stage('Setup Node.js Environment') {
             steps {
-                script {
+            
                    echo "building app"
             }
         }
