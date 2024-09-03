@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/DhanushKeloth/newjenkinsrepo.git'
+                git branch: 'main', url: 'https://github.com/DhanushKeloth/newjenkinsrepo.git'
             }
         }
         stage('Install Dependencies') {
@@ -24,12 +24,13 @@ pipeline {
         stage('Build') {
             steps {
                 // Add build commands if necessary
-                echo "build"
+                echo "test"
             }
         }
         stage('Deploy') {
             steps {
                 echo 'Deploy stage (not implemented)'
+                
             }
         }
     }
