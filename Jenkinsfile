@@ -18,11 +18,13 @@ pipeline {
         stage('Run Tests') {
             steps {
                 // Add test commands if you have tests
+                echo "test"
             }
         }
         stage('Build') {
             steps {
                 // Add build commands if necessary
+                echo "build"
             }
         }
         stage('Deploy') {
