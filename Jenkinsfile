@@ -9,9 +9,10 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 script {
-                    def nodeHome = tool name: 'NodeJS', type: 'NodeJSInstallation'
-                    env.PATH = "${nodeHome}/bin:${env.PATH}"
-                    sh 'npm install'
+                    // def nodeHome = tool name: 'NodeJS', type: 'NodeJSInstallation'
+                    // env.PATH = "${nodeHome}/bin:${env.PATH}"
+                    // sh 'npm install'
+                    echo "install dependencies"
                 }
             }
         }
