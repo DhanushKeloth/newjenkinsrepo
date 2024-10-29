@@ -1,38 +1,50 @@
 pipeline {
     agent any
+
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/DhanushKeloth/newjenkinsrepo.git'
+                // Checkout the code from the repository
+                git 'https://github.com/yourusername/my-nodejs-app.git'
             }
         }
+
         stage('Install Dependencies') {
             steps {
-                script {
-                    // def nodeHome = tool name: 'NodeJS', type: 'NodeJSInstallation'
-                    // env.PATH = "${nodeHome}/bin:${env.PATH}"
-                    // sh 'npm install'
-                    echo "install dependencies"
-                }
+                // Install dependencies
+                sh 'npm install'
             }
         }
+
         stage('Run Tests') {
             steps {
-                // Add test commands if you have tests
-                echo "test"
+                // Run tests
+                sh 'npm test'
             }
         }
+
         stage('Build') {
             steps {
-                // Add build commands if necessary
-                echo "test"
+                // Optional: Build step if needed (e.g., for transpiling)
+                echo 'Building the project...'
             }
         }
+
         stage('Deploy') {
             steps {
-                echo 'Deploy stage (not implemented)'
-                
+                // Deploy the application (could be to a server, Heroku, etc.)
+                echo 'Deploying the application...'
+                // Example command: sh 'npm run deploy' (if you have a deploy script)
             }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline succeeded!'
+        }
+        failure {
+            echo 'Pipeline failed!'
         }
     }
 }
